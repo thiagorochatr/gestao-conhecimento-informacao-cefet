@@ -1,0 +1,199 @@
+\documentclass[12pt]{article}
+
+\usepackage{sbc-template}
+\usepackage{graphicx,url}
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+
+\sloppy
+
+\title{Entre Padrões e Singularidades: Uma Análise Estatística\\ em Dados de Streaming Musical em 2023}
+
+\author{Gustavo Xavier Saldanha, Thiago Rocha Duarte}
+
+
+\address{
+  CEFET/RJ
+  \\
+  CEP 28621-008 -- Nova Friburgo -- RJ -- Brazil
+  \email{\{gustavo.saldanha, thiago.duarte\}@aluno.cefet-rj.br}
+}
+
+\begin{document} 
+
+\maketitle
+
+\begin{abstract}
+  The diversity of musical styles is a constant in our auditory experience, and each production carries its unique particularities. In light of this panorama, this research redirects its focus to a statistical analysis that seeks not only to identify patterns and trends but to highlight the uniqueness of each song in the context of 2023 music streaming data. We explore a variety of attributes, including BPM, danceability, valence, energy, among others, aiming to understand the relationship between these musical characteristics and the uniqueness of each production. Using statistical techniques such as scatter plots, heatmaps, histograms, and the Pearson test, the analysis reveals interesting correlations between certain attributes, providing an in-depth insight into the factors that contribute to the uniqueness and success of a song on streaming platforms. Thus, this research aims to offer an analytical and statistical foundation, emphasizing the unique complexity present in musical production.\cite{silva2020}
+\end{abstract}
+
+     
+\begin{resumo} 
+  A diversidade de estilos musicais é uma constante em nossa experiência auditiva, e cada produção carrega suas particularidades únicas. Diante desse panorama, esta pesquisa redireciona seu foco para uma análise estatística que busca não apenas identificar padrões e tendências, mas destacar a singularidade de cada música no contexto dos dados de streaming musical de 2023. Exploramos uma variedade de atributos, incluindo BPM, dançabilidade, valência, energia, entre outros, visando compreender a relação dessas características musicais com a singularidade de cada produção. Utilizando técnicas estatísticas, como gráficos de dispersão, mapas de calor, histogramas e o teste de Pearson, a análise revela correlações interessantes entre determinados atributos, proporcionando uma visão aprofundada dos fatores que contribuem para a singularidade e sucesso de uma música nas plataformas de streaming. Assim, esta pesquisa visa oferecer uma base analítica e estatística, destacando a complexidade única presente na produção musical.
+\end{resumo}
+
+
+
+\section{Introdução}
+
+A música, como expressão cultural, desempenha um papel fundamental ao longo da história, moldando e refletindo as complexidades da sociedade. Com a proliferação das plataformas de streaming, nossa interação com a música atingiu novas dimensões, transformando-a não apenas em uma fonte de entretenimento, mas também em um rico conjunto de dados. Nesse contexto, esta pesquisa mergulha nas complexidades dos dados de streaming musical, buscando identificar padrões e tendências que permeiam as preferências da audiência\cite{spotify-analysis}.
+
+Explorando a diversidade de estilos musicais, cada um carregando suas próprias particularidades, nosso enfoque recai sobre a compreensão das relações entre atributos musicais e o sucesso das músicas no ano de 2023. Observamos uma mudança marcante na indústria musical contemporânea, onde a produção musical é otimizada para ser utilizada em plataformas de vídeos curtos, ganhando destaque. Essa transformação motivou-nos a investigar de que maneira essas mudanças na produção musical influenciam as características das músicas mais ouvidas em todo o planeta, explorando possíveis adaptações e uso de padrões na busca pela atenção do público ou a singularidade de cada produção que a coloca nessa posição de top global.
+
+A questão central que impulsiona esta pesquisa reside na busca por padrões discerníveis entre os atributos musicais e o sucesso de uma música, medido pelo número de streams. Ao contemplar elementos como BPM, dançabilidade, valência e energia, a incerteza sobre a existência de métricas ou padrões específicos que influenciam o sucesso de uma música surge como um ponto crucial\cite{spotify-analysis}. E é com essa pergunta que norteia a pesquisa em sua missão de conduzir uma análise estatística dos dados, buscando extrair conclusões fundamentadas, mesmo que a resposta seja negativa.
+
+Para atingir uma compreensão mais profunda, esta pesquisa adota uma abordagem metodológica meticulosa na análise dos atributos que compõem uma música. A base de dados, composta pelas músicas mais populares em termos de streams no ano de 2023, serve como o alicerce robusto sobre o qual as análises estatísticas são construídas\cite{kaggle-spotify}. É relevante ressaltar que, embora a base se concentre nas músicas com os maiores números de streams, a amplitude dos dados utilizados transcende o "Top 10", abrangendo mais de 900 registros dos maiores "hits" do ano. A variedade de atributos selecionados é examinada minuciosamente por meio de técnicas estatísticas, como gráficos de dispersão, mapas de calor, histogramas e o teste de Pearson. Essas ferramentas são estrategicamente empregadas com o propósito de revelar padrões ou tendências nas preferências musicais da audiência, proporcionando uma base sólida para a compreensão dos fatores que impulsionam a popularidade musical nas plataformas de streaming.
+
+
+
+\section{Fundamentação Teórica} \label{sec:fundamentacao}
+
+A análise de dados musicais e a compreensão dos fatores que influenciam a popularidade de músicas em plataformas de streaming ganham um novo enfoque ao considerar a singularidade de cada produção musical. Nesse contexto, esta pesquisa se baseia em uma sólida fundamentação teórica para explorar como a diferenciação e a originalidade desempenham papéis cruciais na conquista de grandes números de streams.
+
+A teoria da música popular continua a ser uma base essencial, destacando como elementos como ritmo, melodia, harmonia e letra contribuem para a apreciação única de cada música pelo público\cite{silva2020}. A ênfase recai sobre a compreensão de como a inovação em cada um desses elementos pode influenciar positivamente a recepção das músicas nas plataformas de streaming.
+
+No âmbito da análise estatística de dados musicais, a teoria estatística clássica e a inferência estatística continuam a fornecer ferramentas fundamentais. No entanto, o foco se amplia para incorporar a variabilidade e a diversidade presentes nas produções musicais. O uso de gráficos de dispersão, mapas de calor e histogramas é respaldado pelos princípios da visualização de dados, destacando não apenas padrões gerais, mas também particularidades que contribuem para a singularidade de cada obra.
+
+Teorias sobre preferência musical e consumo de música em ambientes digitais são recontextualizadas para enfatizar a importância da diferenciação. Modelos que exploram a influência da curadoria algorítmica, a dinâmica de listas de reprodução e a interconexão de artistas são fundamentais para entender como as escolhas únicas e inovadoras são valorizadas pelo público.
+
+Ao alinhar essas teorias, esta pesquisa busca construir uma estrutura teórica sólida que permitirá a interpretação aprofundada dos padrões emergentes nos dados de streaming musical de 2023, destacando a necessidade de uma abordagem única e criativa na produção musical para alcançar o sucesso na era digital.
+
+
+
+\section{Metodologia de Pesquisa}
+
+A metodologia adotada para a condução desta pesquisa seguiu uma abordagem passo a passo, visando uma compreensão aprofundada da produção musical e suas correlações entre atributos específicos que compõem uma música. O processo metodológico pode ser delineado da seguinte forma:
+
+\subsection{Formulação da Questão de Pesquisa:}
+Inicialmente, o tema surgiu devido a uma motivação pelo interesse compartilhado da dupla em compreender a evolução da produção musical contemporânea. A observação atenta das mudanças na indústria musical revela uma tendência crescente em direção à criação de músicas otimizadas para plataformas de vídeos curtos. Esses formatos buscam capturar a atenção do público em poucos segundos, muitas vezes destacando refrões específicos ou partes cativantes para uso em vídeos virais.Por outro lado, as produções musicais são produções artísticas, levando consigo a singularidade de cada artista e produção, por isso utilizamos a base de dados com as músicas mais ouvidas de 2023, para entender se essas músicas seguem um padrão, ou são produções ínicas de cada artista. Diante desse cenário dinâmico, a pesquisa almeja analisar, por meio de uma abordagem estatística, se essas transformações na produção musical refletem-se nas características e atributos das músicas mais ouvidas. 
+
+Essa questão, originada da observação do cenário musical atual, buscando desvendar padrões emergentes que possam oferecer interpretações que levam a entender se há uma interseção entre a mudança da indústria musical e as preferências do público.
+
+ 
+\subsection{Seleção da Base de Dados:}
+A busca por uma base de dados relevante e abrangente foi realizada para assegurar uma amostragem interessante para a pesquisa, pois para entender a tendência do público precisamos das músicas com o maior número de \textit{streams}. A escolha recaiu sobre a base \textit{"Most Streamed Spotify Songs 2023"}, fornecendo uma massa considerável de dados para análise\cite{kaggle-spotify}.
+
+\subsection{Avaliação de Atributos:}
+Os atributos a serem avaliados foram cuidadosamente selecionados, abrangendo elementos essenciais na produção musical. Os atributos escolhidos incluíram \textit{streams}, BPM, \textit{dançabilidade}, \textit{valência}, \textit{energia}, \textit{acusticidade}, \textit{instrumentalidade}, \textit{vivacidade} e \textit{cantabilidade}.
+
+\subsection{Análise Estatística:}
+Utilizando técnicas estatísticas, como gráficos de dispersão, mapas de calor, histogramas e o teste de Pearson, procedeu-se à análise dos dados. Esta abordagem foi adotada para identificar padrões, correlações e tendências nos atributos musicais, buscando uma compreensão mais profunda das relações entre eles.
+
+\subsection{Desenvolvimento do Notebook:}
+Com base na análise estatística, foi desenvolvido um notebook de pesquisa para documentar os resultados obtidos. Os gráficos e testes foram cuidadosamente interpretados e discutidos para compreender as correlações nos dados.
+
+\subsection{Interpretação dos Resultados:}
+Os resultados obtidos foram interpretados para identificar a existência de padrões consistentes ou tendências significativas entre os dados avaliados ou para identificar que as músicas mais escutadas não seguem um padrão e que as produções são particularmente diferentes entre si. Esta etapa permitiu uma compreensão mais apurada das relações entre os atributos musicais e a popularidade nas plataformas de streaming.
+
+Na próxima seção, exploraremos cada atributo individualmente, examinando gráficos mais detalhados e conduzindo testes estatísticos específicos para elucidar as complexidades das relações musicais. Esta etapa permitirá uma compreensão mais precisa e fundamentada das influências que moldam o sucesso das músicas na plataforma de streaming.
+
+
+
+\section{Análise de Dados}
+
+Nesta seção, apresentamos uma análise abrangente das características musicais presentes no conjunto de dados das músicas mais populares no Spotify em 2023. Utilizamos de vários atributos que compõem uma música para detalhar a análise e ter uma base vasta para as conclusões. 
+
+Aqui vamos exploramos a distribuição dessas características utilizando gráficos de dispersão, mapas de calor, histogramas e o teste de Pearson\cite{kaggle-spotify-analysis}. Os resultados serão descritos e evidenciados por meio dos resultados gráficos.
+
+\subsection{Frequência de atributos}
+
+Para visualizar a distribuição das características musicais no dataset, geramos histogramas para atributos como BPM, dançabilidade, valência, energia, acusticidade, instrumentalidade, vivacidade e cantabilidade. Esses gráficos oferecem uma visão rápida das frequências de cada atributo na base, que seria o quanto cada atributo aparece na base com o mesmo o mesmo valor.
+
+O resultado obtido foram que existem alguns picos, representando que a frequência de alguns dos atributos se acumulam mais em determinado intervalo, porém esse foi um teste apenas para verificar a ocorrência dos atributos.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.9\textwidth]{histograma_features.png}
+\caption{Frequência de ocorrencia dos atributos}
+\label{fig:exampleFig1}
+\end{figure}
+
+\subsection{Utilizando o teste de Pearson}
+
+Iniciamos aplicando o teste de Pearson para avaliar a correlação entre os atributos BPM e dançabilidade. Utilizamos esses dados para validar a relação de frequência da batida com a dançabilidade da música, verificando se um BPM alto faz uma música dançante ou não. O coeficiente retornado foi de -0.148 revelando uma correlação desprezível, indicando uma influência mínima entre esses atributos. 
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=.5\textwidth]{pearson_danceability_bpm.png}
+\caption{Teste de Pearson BPM x Dançabilidade}
+\label{fig:exampleFig2}
+\end{figure}
+
+O mapa de calor (figura: 3) gerado destaca essa correlação fraca por meio de cores, indo da com vermelha até o azul claro, demonstradio na legenda. 
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=.7\textwidth]{correlation_heatmap.png}
+\caption{Mapa de calor}
+\label{fig:exampleFig3}
+\end{figure}
+
+
+O resultado obtido mostra que a os atributos musicais não tem uma relação significativa entre si, não sofrendo influencia e nem influenciando outros atributos do meio. Podemos interpretar que por conta da diferença cultural, artística e singular de cada criação leva ela a estar na lista das produções mais escutadas de 2023.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=.7\textwidth]{pearson_features.png}
+\caption{Teste Pearson BPM x atributos}
+\label{fig:exampleFig4}
+\end{figure}
+
+Depois disso foi feito  gráficos de dispersão com o teste de pearson, para visualizar a correlação entre o BPM (batidas por minuto) e diversos atributos musicais (dançabilidade, valência, energia, acusticidade, instrumentalidade, vivacidade, cantabilidade e streams). Os gráficos exibem a relação entre o BPM e os outros atributos, fornecendo uma visão detalhada de como a variação no BPM se relaciona com a variação em cada atributo musical. Os coeficientes de cada relação se encontram na no mapar de calor(figura: 3).
+
+
+\subsection{Relação entre Atributos e Número de Streams}
+
+Exploramos a relação entre os atributos musicais (BPM, dançabilidade, valência, energia, acusticidade, instrumentalidade, vivacidade e cantabilidade) e o número de streams associado a cada música. 
+
+Para isso geramos histogramas individuais para cada atributo, examinando como a variável específica se relaciona com a popularidade da música para verificar se existe um padrão entre as músicas mais escutadas e os seus atributos, indicando uma tendência. Os resultados indicam uma distribuição média pelos atributos, sugerindo que os hits globais apresentam uma diversidade de estilos.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=1\textwidth]{correlation_streams_features.png}
+\caption{Histograma Streams x atributos}
+\label{fig:exampleFig5}
+\end{figure}
+
+\subsection{Distribuição de BPM nos Subconjuntos de Músicas Mais Reproduzidas}
+
+Analisamos a distribuição do BPM em subconjuntos de músicas, incluindo as 10, 50, 100, 200, 500, 700 e 817 mais reproduzidas. Os gráficos de dispersão mostram a variação das batidas por minuto em cada conjunto, destacando estatísticas como máximo, mínimo e média. A distribuição uniforme sugere uma ampla variação de BPM em toda a base de dados (figura: 6).
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=1\textwidth]{bpm_distribution_average_min_max.png}
+\caption{BPM x subconjuntos}
+\label{fig:exampleFig6}
+\end{figure}
+
+\subsection{Detalhamento dos Histogramas}
+
+Por fim, fornecemos detalhes adicionais dos histogramas para melhor visualização das distribuições das características musicais, reforçando a variação nos dados, não indicando uma correlação forte entre si.
+
+
+
+\section{Considerações Finais}
+
+Nesta pesquisa, dedicamos nosso esforço a uma análise minuciosa das características musicais presentes no conjunto de dados das músicas mais populares no Spotify em 2023. Explorando uma diversidade de atributos que moldam cada produção musical, nosso intuito foi destacar as singularidades e particularidades inerentes a cada faixa, visando compreender como essas características contribuem para o sucesso e a popularidade no universo do streaming. Utilizando técnicas estatísticas, como gráficos de dispersão, mapas de calor, histogramas e o teste de Pearson, examinamos detalhadamente as nuances presentes nas músicas, oferecendo uma base valiosa sobre a diversidade e complexidade das preferências musicais da audiência global.
+
+\subsection{Resultados da Análise de Dados}
+
+Iniciamos a exploração da distribuição das características musicais por meio de histogramas, analisando atributos como BPM, dançabilidade, valência, energia, acústica, instrumentalidade, vivacidade e cantabilidade. Os resultados revelaram picos em certos intervalos, indicando que a frequência de certos atributos se acumula em valores específicos.
+
+Ao aplicarmos o teste de Pearson para avaliar a correlação entre os atributos BPM e dançabilidade, obtivemos um coeficiente de -0.148, revelando uma correlação desprezível entre esses elementos. O mapa de calor reforçou essa correlação fraca, destacando a independência dos atributos musicais na base de dados.
+
+Adicionalmente, os gráficos de dispersão com o teste de Pearson exploraram a relação entre o BPM e diversos atributos musicais (dançabilidade, valência, energia, acústica, instrumentalidade, vivacidade, cantabilidade e streams). Os resultados sublinharam a falta de uma influência significativa entre esses atributos, evidenciando uma variação considerável nos dados. Essa amplitude de variação sugere que a diversidade de estilos presentes na base contribui para essa diferenciação.
+
+\subsection{Impacto da Diversidade na Base de Dados}
+
+As divergências encontradas entre os atributos musicais podem ser diretamente atribuídas à vasta diversidade de estilos e gêneros musicais presentes na base de dados. Com artistas de diferentes regiões, nacionalidades e nichos, a base reflete uma heterogeneidade musical significativa. Essa amplitude de estilos contribui para a falta de uma correlação mais forte entre os atributos, uma vez que cada música representa uma expressão artística única, influenciada por fatores culturais, regionais e individuais.
+
+Enquanto a falta de correlações robustas entre os atributos pode sugerir uma complexidade na definição de um padrão global para músicas de sucesso, ela também destaca a individualidade e singularidade de cada produção. Assim, a compreensão aprofundada dessas divergências ressalta a importância de abordagens mais específicas, considerando características regionais e culturais, para uma análise mais precisa e contextualizada das preferências musicais. E isso abre espaço para um futuro estudo mais aprofundado em regiões específicas para realizar o estudo de correlações entre as músicas populares em uma região.
+
+
+\section{References}
+
+
+\bibliographystyle{sbc}
+\bibliography{sbc-template}
+
+\end{document}
